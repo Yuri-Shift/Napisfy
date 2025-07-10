@@ -1,0 +1,420 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<!-- Main Content -->
+<main class="main-content">
+    <div class="container-fluid py-4">
+
+        <!-- Album Header -->
+        <section class="album-header mb-5">
+            <div class="row align-items-end">
+                <div class="col-auto">
+                    <div class="album-cover-large">
+                        <img src="https://via.placeholder.com/300x300/1DB954/ffffff?text=After+Hours" alt="After Hours"
+                            class="img-fluid rounded shadow-lg">
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="album-info">
+                        <p class="text-muted mb-2">Playlist</p>
+                        <h1 class="display-4 fw-bold mb-3">After Hours</h1>
+                        <div class="album-meta d-flex align-items-center flex-wrap">
+                            <img src="https://via.placeholder.com/30x30/1DB954/ffffff?text=TW" alt="The Weeknd"
+                                class="rounded-circle me-2">
+                            <span class="fw-bold me-3">The Weeknd</span>
+                            <span class="text-muted me-3">•</span>
+                            <span class="text-muted me-3">2020</span>
+                            <span class="text-muted me-3">•</span>
+                            <span class="text-muted me-3">14 músicas</span>
+                            <span class="text-muted me-3">•</span>
+                            <span class="text-muted">56 min 16 seg</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Action Buttons -->
+        <section class="album-actions mb-4">
+            <div class="d-flex align-items-center">
+                <button class="btn btn-primary btn-lg rounded-pill me-3 play-album-btn">
+                    <i class="fas fa-play me-2"></i>Reproduzir
+                </button>
+                <button class="btn btn-outline-light rounded-pill me-3 follow-btn">
+                    <i class="far fa-heart me-2"></i>Salvar
+                </button>
+                <div class="dropdown">
+                    <button class="btn btn-link text-light" data-bs-toggle="dropdown">
+                        <i class="fas fa-ellipsis-h fa-lg"></i>
+                    </button>
+                    <ul class="dropdown-menu bg-secondary">
+                        <li><a class="dropdown-item text-light" href="#">Adicionar à fila</a></li>
+                        <li><a class="dropdown-item text-light" href="#">Ir para rádio do álbum</a></li>
+                        <li><a class="dropdown-item text-light" href="#">Compartilhar</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item text-light" href="#">Abrir no desktop</a></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Track List -->
+        <section class="tracklist mb-5">
+            <div class="table-responsive">
+                <table class="table table-dark table-hover">
+                    <thead>
+                        <tr class="border-bottom border-secondary">
+                            <th style="width: 50px;">#</th>
+                            <th>TÍTULO</th>
+                            <th style="width: 100px;">REPRODUÇÕES</th>
+                            <th style="width: 100px;">DURAÇÃO</th>
+                            <th style="width: 50px;"></th>
+                        </tr>
+                    </thead>
+                    <tbody class="tracklist-body">
+                        <tr class="track-row" data-track="1">
+                            <td>
+                                <div class="track-number">
+                                    <span class="number">1</span>
+                                    <button class="btn btn-link text-light play-btn" style="display: none;">
+                                        <i class="fas fa-play"></i>
+                                    </button>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="track-info">
+                                    <div class="track-title">Alone Again</div>
+                                    <div class="track-artist text-muted">The Weeknd</div>
+                                </div>
+                            </td>
+                            <td class="text-muted">523,847,392</td>
+                            <td class="text-muted">4:10</td>
+                            <td>
+                                <div class="track-actions">
+                                    <button class="btn btn-link text-light like-btn">
+                                        <i class="far fa-heart"></i>
+                                    </button>
+                                    <div class="dropdown">
+                                        <button class="btn btn-link text-light" data-bs-toggle="dropdown">
+                                            <i class="fas fa-ellipsis-h"></i>
+                                        </button>
+                                        <ul class="dropdown-menu bg-secondary">
+                                            <li><a class="dropdown-item text-light" href="#">Adicionar à fila</a></li>
+                                            <li><a class="dropdown-item text-light" href="#">Adicionar à playlist</a>
+                                            </li>
+                                            <li><a class="dropdown-item text-light" href="#">Ir para rádio da música</a>
+                                            </li>
+                                            <li><a class="dropdown-item text-light" href="#">Compartilhar</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr class="track-row" data-track="2">
+                            <td>
+                                <div class="track-number">
+                                    <span class="number">2</span>
+                                    <button class="btn btn-link text-light play-btn" style="display: none;">
+                                        <i class="fas fa-play"></i>
+                                    </button>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="track-info">
+                                    <div class="track-title">Too Late</div>
+                                    <div class="track-artist text-muted">The Weeknd</div>
+                                </div>
+                            </td>
+                            <td class="text-muted">287,123,456</td>
+                            <td class="text-muted">3:59</td>
+                            <td>
+                                <div class="track-actions">
+                                    <button class="btn btn-link text-light like-btn">
+                                        <i class="far fa-heart"></i>
+                                    </button>
+                                    <div class="dropdown">
+                                        <button class="btn btn-link text-light" data-bs-toggle="dropdown">
+                                            <i class="fas fa-ellipsis-h"></i>
+                                        </button>
+                                        <ul class="dropdown-menu bg-secondary">
+                                            <li><a class="dropdown-item text-light" href="#">Adicionar à fila</a></li>
+                                            <li><a class="dropdown-item text-light" href="#">Adicionar à playlist</a>
+                                            </li>
+                                            <li><a class="dropdown-item text-light" href="#">Ir para rádio da música</a>
+                                            </li>
+                                            <li><a class="dropdown-item text-light" href="#">Compartilhar</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr class="track-row" data-track="3">
+                            <td>
+                                <div class="track-number">
+                                    <span class="number">3</span>
+                                    <button class="btn btn-link text-light play-btn" style="display: none;">
+                                        <i class="fas fa-play"></i>
+                                    </button>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="track-info">
+                                    <div class="track-title">Hardest to Love</div>
+                                    <div class="track-artist text-muted">The Weeknd</div>
+                                </div>
+                            </td>
+                            <td class="text-muted">195,673,892</td>
+                            <td class="text-muted">3:31</td>
+                            <td>
+                                <div class="track-actions">
+                                    <button class="btn btn-link text-light like-btn">
+                                        <i class="far fa-heart"></i>
+                                    </button>
+                                    <div class="dropdown">
+                                        <button class="btn btn-link text-light" data-bs-toggle="dropdown">
+                                            <i class="fas fa-ellipsis-h"></i>
+                                        </button>
+                                        <ul class="dropdown-menu bg-secondary">
+                                            <li><a class="dropdown-item text-light" href="#">Adicionar à fila</a></li>
+                                            <li><a class="dropdown-item text-light" href="#">Adicionar à playlist</a>
+                                            </li>
+                                            <li><a class="dropdown-item text-light" href="#">Ir para rádio da música</a>
+                                            </li>
+                                            <li><a class="dropdown-item text-light" href="#">Compartilhar</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr class="track-row" data-track="4">
+                            <td>
+                                <div class="track-number">
+                                    <span class="number">4</span>
+                                    <button class="btn btn-link text-light play-btn" style="display: none;">
+                                        <i class="fas fa-play"></i>
+                                    </button>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="track-info">
+                                    <div class="track-title popular-track">Blinding Lights</div>
+                                    <div class="track-artist text-muted">The Weeknd</div>
+                                </div>
+                            </td>
+                            <td class="text-muted">2,847,392,156</td>
+                            <td class="text-muted">3:20</td>
+                            <td>
+                                <div class="track-actions">
+                                    <button class="btn btn-link text-light like-btn">
+                                        <i class="fas fa-heart text-primary"></i>
+                                    </button>
+                                    <div class="dropdown">
+                                        <button class="btn btn-link text-light" data-bs-toggle="dropdown">
+                                            <i class="fas fa-ellipsis-h"></i>
+                                        </button>
+                                        <ul class="dropdown-menu bg-secondary">
+                                            <li><a class="dropdown-item text-light" href="#">Adicionar à fila</a></li>
+                                            <li><a class="dropdown-item text-light" href="#">Adicionar à playlist</a>
+                                            </li>
+                                            <li><a class="dropdown-item text-light" href="#">Ir para rádio da música</a>
+                                            </li>
+                                            <li><a class="dropdown-item text-light" href="#">Compartilhar</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr class="track-row" data-track="5">
+                            <td>
+                                <div class="track-number">
+                                    <span class="number">5</span>
+                                    <button class="btn btn-link text-light play-btn" style="display: none;">
+                                        <i class="fas fa-play"></i>
+                                    </button>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="track-info">
+                                    <div class="track-title">In Your Eyes</div>
+                                    <div class="track-artist text-muted">The Weeknd</div>
+                                </div>
+                            </td>
+                            <td class="text-muted">687,234,891</td>
+                            <td class="text-muted">3:57</td>
+                            <td>
+                                <div class="track-actions">
+                                    <button class="btn btn-link text-light like-btn">
+                                        <i class="far fa-heart"></i>
+                                    </button>
+                                    <div class="dropdown">
+                                        <button class="btn btn-link text-light" data-bs-toggle="dropdown">
+                                            <i class="fas fa-ellipsis-h"></i>
+                                        </button>
+                                        <ul class="dropdown-menu bg-secondary">
+                                            <li><a class="dropdown-item text-light" href="#">Adicionar à fila</a></li>
+                                            <li><a class="dropdown-item text-light" href="#">Adicionar à playlist</a>
+                                            </li>
+                                            <li><a class="dropdown-item text-light" href="#">Ir para rádio da música</a>
+                                            </li>
+                                            <li><a class="dropdown-item text-light" href="#">Compartilhar</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- More tracks... -->
+                        <tr class="track-row" data-track="6">
+                            <td>
+                                <div class="track-number">
+                                    <span class="number">6</span>
+                                    <button class="btn btn-link text-light play-btn" style="display: none;">
+                                        <i class="fas fa-play"></i>
+                                    </button>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="track-info">
+                                    <div class="track-title">Save Your Tears</div>
+                                    <div class="track-artist text-muted">The Weeknd</div>
+                                </div>
+                            </td>
+                            <td class="text-muted">1,234,567,890</td>
+                            <td class="text-muted">3:35</td>
+                            <td>
+                                <div class="track-actions">
+                                    <button class="btn btn-link text-light like-btn">
+                                        <i class="far fa-heart"></i>
+                                    </button>
+                                    <div class="dropdown">
+                                        <button class="btn btn-link text-light" data-bs-toggle="dropdown">
+                                            <i class="fas fa-ellipsis-h"></i>
+                                        </button>
+                                        <ul class="dropdown-menu bg-secondary">
+                                            <li><a class="dropdown-item text-light" href="#">Adicionar à fila</a></li>
+                                            <li><a class="dropdown-item text-light" href="#">Adicionar à playlist</a>
+                                            </li>
+                                            <li><a class="dropdown-item text-light" href="#">Ir para rádio da música</a>
+                                            </li>
+                                            <li><a class="dropdown-item text-light" href="#">Compartilhar</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Album Info -->
+        <section class="album-info-section mb-5">
+            <div class="row">
+                <div class="col-md-8">
+                    <h3 class="mb-3">Sobre este álbum</h3>
+                    <p class="text-muted">
+                        After Hours é o quarto álbum de estúdio do artista canadense The Weeknd.
+                        Foi lançado em 20 de março de 2020 pela XO e Republic Records. O álbum apresenta
+                        os sucessos "Heartless", "Blinding Lights" e "Save Your Tears".
+                    </p>
+                    <div class="album-details mt-4">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <strong>Data de lançamento:</strong><br>
+                                <span class="text-muted">20 de março de 2020</span>
+                            </div>
+                            <div class="col-sm-6">
+                                <strong>Gravadora:</strong><br>
+                                <span class="text-muted">XO, Republic Records</span>
+                            </div>
+                            <div class="col-sm-6 mt-3">
+                                <strong>Gênero:</strong><br>
+                                <span class="text-muted">R&B, Pop, Synthpop</span>
+                            </div>
+                            <div class="col-sm-6 mt-3">
+                                <strong>Produtor:</strong><br>
+                                <span class="text-muted">The Weeknd, Max Martin, Ahmad Balshe</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- More Albums -->
+        <section class="mb-5">
+            <h3 class="mb-3">Mais de The Weeknd</h3>
+            <div class="row">
+                <div class="col-lg-2 col-md-3 col-sm-4 col-6 mb-4">
+                    <div class="album-card" onclick="goToAlbum('dawn-fm')">
+                        <div class="card bg-transparent border-0">
+                            <div class="position-relative">
+                                <img src="https://via.placeholder.com/200x200/1ED760/ffffff?text=Dawn+FM"
+                                    class="card-img-top album-cover" alt="Dawn FM">
+                                <div class="play-overlay">
+                                    <button class="btn btn-primary rounded-circle">
+                                        <i class="fas fa-play"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body p-2">
+                                <h6 class="card-title mb-1">Dawn FM</h6>
+                                <p class="card-text text-muted small">2022</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 col-md-3 col-sm-4 col-6 mb-4">
+                    <div class="album-card" onclick="goToAlbum('starboy')">
+                        <div class="card bg-transparent border-0">
+                            <div class="position-relative">
+                                <img src="https://via.placeholder.com/200x200/1AA34A/ffffff?text=Starboy"
+                                    class="card-img-top album-cover" alt="Starboy">
+                                <div class="play-overlay">
+                                    <button class="btn btn-primary rounded-circle">
+                                        <i class="fas fa-play"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body p-2">
+                                <h6 class="card-title mb-1">Starboy</h6>
+                                <p class="card-text text-muted small">2016</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 col-md-3 col-sm-4 col-6 mb-4">
+                    <div class="album-card" onclick="goToAlbum('beauty-behind-the-madness')">
+                        <div class="card bg-transparent border-0">
+                            <div class="position-relative">
+                                <img src="https://via.placeholder.com/200x200/FF6B6B/ffffff?text=Beauty"
+                                    class="card-img-top album-cover" alt="Beauty Behind the Madness">
+                                <div class="play-overlay">
+                                    <button class="btn btn-primary rounded-circle">
+                                        <i class="fas fa-play"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body p-2">
+                                <h6 class="card-title mb-1">Beauty Behind the Madness</h6>
+                                <p class="card-text text-muted small">2015</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</main>
+
+<script src="js/album.js"></script>
+{% endblock %}

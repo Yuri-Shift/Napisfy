@@ -1,0 +1,130 @@
+{% load static %}
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary-dark fixed-top">
+    <div class="container-fluid">
+        <img src="{% static 'img/logo.png' %}" alt="Logo" class="navbar-logo" width="40" height="40">
+        <a class="navbar-brand fw-bold" href="{% url 'home' %}">
+            Napisfy
+        </a>
+
+        <!-- Search Bar -->
+        <div class="flex-grow-1 mx-4">
+            <div class="position-relative">
+                <input type="text" class="form-control bg-dark border-secondary text-light search-input"
+                    placeholder="Buscar música, artista, álbum..." id="searchInput">
+                <button class="btn position-absolute top-50 end-0 translate-middle-y me-2 search-btn" type="button">
+                    <i class="fas fa-search text-muted"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- User Menu -->
+        <div class="navbar-nav">
+            <div class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                    Epitácio Faria <!-- nome do usuário -->
+                    <i class="fas fa-user-circle fa-lg"></i>
+                </a>
+
+                <ul class="dropdown-menu dropdown-menu-end bg-secondary">
+                    <div id="profile-button">
+                        <li><a class="dropdown-item text-light" href="#">Login</a></li>
+                        <li><a class="dropdown-item text-light" href="#">Registrar</a></li>
+                    </div>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item text-light" href="#">Sair</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered"> <!-- Centraliza verticalmente -->
+        <div class="modal-content text-dark">
+            <div class="modal-header">
+                <h5 class="modal-title" id="loginModalLabel">Acesse sua Conta</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Abas Login/Cadastro -->
+                <ul class="nav nav-tabs nav-fill mb-3" id="loginTabs" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="login-tab" data-bs-toggle="tab" data-bs-target="#login-pane"
+                            type="button" role="tab" aria-controls="login-pane" aria-selected="true">Login</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="register-tab" data-bs-toggle="tab" data-bs-target="#register-pane"
+                            type="button" role="tab" aria-controls="register-pane"
+                            aria-selected="false">Cadastro</button>
+                    </li>
+                </ul>
+                <!-- Conteúdo das Abas -->
+                <div class="tab-content" id="loginTabsContent">
+                    <!-- Painel Login -->
+                    <div class="tab-pane fade show active" id="login-pane" role="tabpanel" aria-labelledby="login-tab">
+                        <form id="login-form" novalidate> <!-- Adiciona novalidate para controle JS -->
+                            <div class="mb-3">
+                                <label for="login-email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="login-email" required>
+                                <div class="invalid-feedback">Por favor, insira um email válido.</div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="login-password" class="form-label">Senha</label>
+                                <input type="password" class="form-control" id="login-password" required>
+                                <div class="invalid-feedback">Por favor, insira sua senha.</div>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input" id="remember-me">
+                                    <label class="form-check-label" for="remember-me">Lembrar de mim</label>
+                                </div>
+                                <a href="#" class="text-decoration-none small"
+                                    style="color: var(--accent-hover);">Esqueceu a senha?</a>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">Entrar</button>
+                        </form>
+                    </div>
+                    <!-- Painel Cadastro -->
+                    <div class="tab-pane fade" id="register-pane" role="tabpanel" aria-labelledby="register-tab">
+                        <form id="register-form" novalidate>
+                            <div class="mb-3">
+                                <label for="register-name" class="form-label">Nome completo</label>
+                                <input type="text" class="form-control" id="register-name" required>
+                                <div class="invalid-feedback">Por favor, insira seu nome.</div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="register-email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="register-email" required>
+                                <div class="invalid-feedback">Por favor, insira um email válido.</div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="register-password" class="form-label">Senha</label>
+                                <input type="password" class="form-control" id="register-password" required
+                                    minlength="6"> <!-- Exemplo: mínimo 6 caracteres -->
+                                <div class="invalid-feedback">A senha deve ter no mínimo 6 caracteres.</div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="register-password-confirm" class="form-label">Confirmar senha</label>
+                                <input type="password" class="form-control" id="register-password-confirm" required>
+                                <div class="invalid-feedback">As senhas não coincidem.</div>
+                            </div>
+                            <div class="mb-3 form-check">
+                                <input type="checkbox" class="form-check-input" id="terms" required>
+                                <label class="form-check-label" for="terms">Eu concordo com os <a href="#"
+                                        class="text-decoration-none" style="color: var(--accent-hover);">Termos de
+                                        Serviço</a></label>
+                                <div class="invalid-feedback">Você deve aceitar os termos.</div>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">Cadastrar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

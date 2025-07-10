@@ -1,0 +1,85 @@
+{% load static %}
+
+<!-- Music Player (Fixed Bottom) -->
+<div class="music-player" id="musicPlayer" style="display: block;">
+    <div class="container-fluid">
+        <div class="row align-items-center">
+            <!-- Track Info -->
+            <div class="col-3">
+                <div class="d-flex align-items-center">
+                    <img src="https://via.placeholder.com/60x60?text=♪" 
+                        alt="Album Cover" class="player-album-cover me-3 rounded"> <!-- logo -->
+                    <div>
+                        <div class="player-track-name">Clique em uma música</div>
+                        <div class="player-artist-name text-secondary">Napisfy Player</div>
+                    </div>
+                    <button class="btn btn-link text-light ms-3 like-btn">
+                        <i class="far fa-heart"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Player Controls -->
+            <div class="col-6">
+                <div class="player-controls text-center">
+                    <div class="control-buttons mb-2">
+                        <button class="btn btn-link text-light shuffle-btn" title="Embaralhar">
+                            <i class="fas fa-random"></i>
+                        </button>
+                        <button class="btn btn-link text-light prev-btn" title="Anterior">
+                            <i class="fas fa-step-backward"></i>
+                        </button>
+                        <button class="btn btn-primary play-pause-btn" title="Reproduzir/Pausar">
+                            <i class="fas fa-play"></i>
+                        </button>
+                        <button class="btn btn-link text-light next-btn" title="Próxima">
+                            <i class="fas fa-step-forward"></i>
+                        </button>
+                        <button class="btn btn-link text-light repeat-btn" title="Repetir">
+                            <i class="fas fa-redo"></i>
+                        </button>
+                    </div>
+                    <div class="progress-container d-flex align-items-center">
+                        <span class="current-time">0:00</span>
+                        <div class="progress mx-3 flex-grow-1" style="cursor: pointer;">
+                            <div class="progress-bar bg-primary" role="progressbar" style="width: 0%"></div>
+                        </div>
+                        <span class="total-time">0:00</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Volume and Options -->
+            <div class="col-3">
+                <div class="d-flex align-items-center justify-content-end">
+                    <button class="btn btn-link text-light queue-btn me-2" title="Fila de reprodução">
+                        <i class="fas fa-list"></i>
+                    </button>
+                    <button class="btn btn-link text-light volume-btn me-2" title="Volume">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
+                    <div class="volume-slider" style="width: 100px;">
+                        <input type="range" class="form-range" min="0" max="100" value="60" id="volumeSlider">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Queue Modal -->
+<div class="modal fade" id="queueModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content bg-dark">
+            <div class="modal-header border-secondary">
+                <h5 class="modal-title">Fila de Reprodução</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="queue-list" id="queueList">
+                    <!-- Queue items will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,391 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="cache-control" content="max-age=604800" />
+    <!-- Favicon -->
+    <link rel="icon" href="{% static 'img/logo.png' %}" type="image/x-icon">
+    <link rel="shortcut icon" href="{% static 'img/logo.png' %}" type="image/x-icon">
+
+    <title>Napisfy - Tela Inicial</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+</head>
+
+<body class="bg-dark text-light">
+    {% include 'includes/navbar.html' %}
+
+    {% include 'includes/sidebar.html' %}
+
+    {% block content %}
+    {% endblock %}
+
+    {% include 'includes/footer.html' %}
+
+    <!-- JavaScript deve vir no final do body -->
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- jQuery -->
+    <script src="{% static 'js/jquery-3.7.0.min.js' %}"></script>
+    <!-- Howler.js for audio playback -->
+    <script src="https://cdn.jsdelivr.net/npm/howler@2.2.3/dist/howler.min.js"></script>
+    <!-- Custom JS -->
+    <script src="{% static 'js/music-player.js' %}"></script>
+
+    <script>
+        // DOM Ready
+        document.addEventListener('DOMContentLoaded', function () {
+            // Login Modal
+            const loginModalElement = document.getElementById('loginModal');
+            const loginModal = loginModalElement ? new bootstrap.Modal(loginModalElement) : null;
+            const profileButton = document.getElementById('profile-button');
+
+            if (profileButton && loginModal) {
+                profileButton.addEventListener('click', () => loginModal.show());
+            }
+
+            // jQuery ready
+            $(document).ready(function () {
+                // jQuery code aqui
+                console.log('jQuery carregado e DOM pronto');
+
+                // Initialize music player after a short delay
+                setTimeout(() => {
+                    if (window.musicPlayer) {
+                        console.log('Music Player with Howler.js is ready!');
+
+                        // Add keyboard shortcut info
+                        console.log('Keyboard shortcuts:');
+                        console.log('- Spacebar: Play/Pause');
+                        console.log('- Left Arrow: Skip backward 10s');
+                        console.log('- Right Arrow: Skip forward 10s');
+                        console.log('- Up Arrow: Volume up');
+                        console.log('- Down Arrow: Volume down');
+                        
+                        // Carregar músicas do Django automaticamente
+                        initPlayerWithDjangoData();
+                    }
+                }, 1000);
+            });
+        });
+
+        async function playTrackFromDB(trackId) {
+            try {
+                console.log('🎵 Carregando música ID:', trackId);
+                
+                // Buscar detalhes da música via API
+                const response = await fetch(`/api/cancao/${trackId}/`);
+                if (!response.ok) {
+                    throw new Error('Erro ao carregar música');
+                }
+                
+                const trackData = await response.json();
+                console.log('🎵 Música carregada:', trackData);
+                
+                // Verificar se tem URL de áudio
+                if (!trackData.url || trackData.url === '') {
+                    console.warn('⚠️ Música sem URL de áudio:', trackData);
+                    showErrorMessage('Esta música não tem arquivo de áudio cadastrado.');
+                    return;
+                }
+                
+                console.log('🎵 URL do áudio:', trackData.url);
+                
+                // Tocar a música
+                if (window.musicPlayer) {
+                    window.musicPlayer.playTrack(trackData);
+                    showPlayer();
+                } else {
+                    console.error('❌ Player não está disponível');
+                    showErrorMessage('Player não está disponível. Recarregue a página.');
+                }
+                
+            } catch (error) {
+                console.error('❌ Erro ao carregar música:', error);
+                showErrorMessage('Erro ao carregar a música. Tente novamente.');
+            }
+        }
+
+        // Função para tocar todas as músicas de um álbum
+        async function playAlbumFromDB(albumId) {
+            try {
+                console.log('🎵 Carregando álbum ID:', albumId);
+                
+                // Buscar músicas do álbum via API
+                const response = await fetch(`/api/album/${albumId}/cancoes/`);
+                if (!response.ok) {
+                    throw new Error('Erro ao carregar álbum');
+                }
+                
+                const albumData = await response.json();
+                console.log('🎵 Álbum carregado:', albumData);
+                
+                if (albumData.tracks && albumData.tracks.length > 0) {
+                    // Carregar playlist com as músicas do álbum
+                    if (window.musicPlayer) {
+                        window.musicPlayer.loadPlaylist(albumData.tracks);
+                        window.musicPlayer.playTrack(albumData.tracks[0]);
+                        showPlayer();
+                    }
+                } else {
+                    showErrorMessage('Este álbum não contém músicas.');
+                }
+                
+            } catch (error) {
+                console.error('❌ Erro ao carregar álbum:', error);
+                showErrorMessage('Erro ao carregar o álbum. Tente novamente.');
+            }
+        }
+
+        // Função para carregar todas as músicas disponíveis
+        async function loadAllTracks() {
+            try {
+                console.log('🎵 Carregando todas as músicas...');
+                
+                // Buscar todas as músicas via API
+                const response = await fetch('/api/cancoes/');
+                if (!response.ok) {
+                    throw new Error('Erro ao carregar músicas');
+                }
+                
+                const data = await response.json();
+                console.log('🎵 Resposta da API:', data);
+                console.log('🎵 Músicas carregadas:', data.tracks.length);
+                
+                if (data.tracks && data.tracks.length > 0) {
+                    // Verificar quais músicas têm URL de áudio
+                    const tracksWithAudio = data.tracks.filter(track => track.url && track.url !== '');
+                    const tracksWithoutAudio = data.tracks.filter(track => !track.url || track.url === '');
+                    
+                    console.log(`🎵 Músicas com áudio: ${tracksWithAudio.length}`);
+                    console.log(`⚠️ Músicas sem áudio: ${tracksWithoutAudio.length}`);
+                    
+                    if (tracksWithoutAudio.length > 0) {
+                        console.warn('⚠️ Músicas sem áudio:', tracksWithoutAudio);
+                    }
+                    
+                    // Carregar playlist com todas as músicas
+                    if (window.musicPlayer) {
+                        window.musicPlayer.loadPlaylist(data.tracks);
+                    }
+                    
+                    return data.tracks;
+                } else {
+                    showErrorMessage('Nenhuma música encontrada no banco de dados.');
+                    return [];
+                }
+                
+            } catch (error) {
+                console.error('❌ Erro ao carregar músicas:', error);
+                showErrorMessage('Erro ao carregar as músicas. Tente novamente.');
+                return [];
+            }
+        }
+
+        // Função para inicializar o player com dados do Django
+        async function initPlayerWithDjangoData() {
+            try {
+                console.log('🎵 Inicializando player com dados do Django...');
+                
+                // Carregar todas as músicas disponíveis
+                const tracks = await loadAllTracks();
+                
+                if (tracks.length > 0) {
+                    console.log(`🎵 Player inicializado com ${tracks.length} músicas`);
+                    showPlayer();
+                } else {
+                    console.log('ℹ️ Nenhuma música encontrada no banco de dados');
+                    console.log('💡 Execute: python manage.py populate_db');
+                }
+                
+            } catch (error) {
+                console.error('❌ Erro ao inicializar player:', error);
+            }
+        }
+
+        // Função para testar player com dados do Django
+        async function testPlayer() {
+            console.log('🎵 Testando player com dados do Django...');
+            
+            // Tentar tocar a primeira música do banco de dados
+            try {
+                const tracks = await loadAllTracks();
+                if (tracks.length > 0) {
+                    window.musicPlayer.playTrack(tracks[0]);
+                    console.log('🎵 Tocando primeira música do banco:', tracks[0].name);
+                    showPlayer();
+                } else {
+                    console.log('ℹ️ Nenhuma música encontrada. Execute: python manage.py populate_db');
+                    // Fallback para teste com áudio de exemplo
+                    if (window.musicPlayer) {
+                        const testTrack = {
+                            id: 'test-1',
+                            name: 'Teste de Áudio',
+                            artist: 'Sistema',
+                            album: 'Teste',
+                            url: 'https://www.soundjay.com/misc/sounds/bell-ringing-05.wav',
+                            format: ['wav'],
+                            cover: 'https://via.placeholder.com/300x300?text=Teste',
+                            duration: 5
+                        };
+                        window.musicPlayer.playTrack(testTrack);
+                        showPlayer();
+                    }
+                }
+            } catch (error) {
+                console.error('❌ Erro no teste:', error);
+            }
+        }
+
+        // Função para buscar e tocar músicas
+        async function searchAndPlay(query) {
+            try {
+                console.log('🔍 Buscando:', query);
+                
+                // Carregar todas as músicas e filtrar
+                const allTracks = await loadAllTracks();
+                const filteredTracks = allTracks.filter(track => 
+                    track.name.toLowerCase().includes(query.toLowerCase()) ||
+                    track.artist.toLowerCase().includes(query.toLowerCase()) ||
+                    track.album.toLowerCase().includes(query.toLowerCase())
+                );
+                
+                if (filteredTracks.length > 0 && window.musicPlayer) {
+                    window.musicPlayer.loadPlaylist(filteredTracks);
+                    window.musicPlayer.playTrack(filteredTracks[0]);
+                    showPlayer();
+                } else {
+                    showErrorMessage('Nenhuma música encontrada para: ' + query);
+                }
+                
+            } catch (error) {
+                console.error('❌ Erro na busca:', error);
+                showErrorMessage('Erro na busca. Tente novamente.');
+            }
+        }
+
+        // Função para mostrar mensagens de erro
+        function showErrorMessage(message) {
+            // Criar uma notificação simples
+            const notification = document.createElement('div');
+            notification.className = 'alert alert-danger position-fixed';
+            notification.style.cssText = `
+                top: 20px;
+                right: 20px;
+                z-index: 9999;
+                min-width: 300px;
+                animation: fadeIn 0.3s ease-in;
+            `;
+            notification.innerHTML = `
+                <div class="d-flex align-items-center">
+                    <i class="fas fa-exclamation-triangle me-2"></i>
+                    <span>${message}</span>
+                    <button type="button" class="btn-close ms-auto" onclick="this.parentElement.parentElement.remove()"></button>
+                </div>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Remover automaticamente após 5 segundos
+            setTimeout(() => {
+                if (notification.parentElement) {
+                    notification.remove();
+                }
+            }, 5000);
+        }
+
+        // Função para mostrar o player
+        function showPlayer() {
+            const musicPlayer = document.getElementById('musicPlayer');
+            if (musicPlayer) {
+                musicPlayer.style.display = 'block';
+                console.log('🎵 Player exibido');
+            }
+        }
+
+        // Função para ocultar o player
+        function hidePlayer() {
+            const musicPlayer = document.getElementById('musicPlayer');
+            if (musicPlayer) {
+                musicPlayer.style.display = 'none';
+                console.log('🎵 Player ocultado');
+            }
+        }
+
+        // Função para alternar visibilidade do player
+        function togglePlayer() {
+            const musicPlayer = document.getElementById('musicPlayer');
+            if (musicPlayer) {
+                const isVisible = musicPlayer.style.display !== 'none';
+                musicPlayer.style.display = isVisible ? 'none' : 'block';
+                console.log('🎵 Player', isVisible ? 'ocultado' : 'exibido');
+            }
+        }
+        
+        // Função para diagnosticar problemas
+        async function diagnosticPlayer() {
+            console.log('🔍 === DIAGNÓSTICO DO PLAYER ===');
+            
+            // 1. Verificar se o player está carregado
+            console.log('1. Player disponível:', !!window.musicPlayer);
+            
+            // 2. Verificar se as APIs estão funcionando
+            try {
+                const response = await fetch('/api/cancoes/');
+                console.log('2. API /api/cancoes/ status:', response.status);
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    console.log('3. Total de músicas na API:', data.tracks.length);
+                    
+                    if (data.tracks.length > 0) {
+                        console.log('4. Primeira música:', data.tracks[0]);
+                        console.log('5. URL da primeira música:', data.tracks[0].url);
+                        
+                        // Verificar se existe áudio para reproduzir
+                        const tracksWithAudio = data.tracks.filter(t => t.url && t.url !== '');
+                        console.log('6. Músicas com URL de áudio:', tracksWithAudio.length);
+                        
+                        if (tracksWithAudio.length === 0) {
+                            console.error('❌ PROBLEMA: Nenhuma música tem URL de áudio!');
+                            console.log('💡 Solução: Adicione arquivos de áudio ou links nas músicas no admin');
+                        }
+                    }
+                } else {
+                    console.error('❌ PROBLEMA: API não está respondendo corretamente');
+                }
+            } catch (error) {
+                console.error('❌ PROBLEMA: Erro ao acessar API:', error);
+            }
+            
+            // 3. Verificar elementos do DOM
+            const playerElement = document.getElementById('musicPlayer');
+            console.log('7. Elemento player encontrado:', !!playerElement);
+            
+            if (playerElement) {
+                console.log('8. Player visível:', playerElement.style.display !== 'none');
+            }
+            
+            console.log('🔍 === FIM DO DIAGNÓSTICO ===');
+        }
+        
+        // Executar diagnóstico automaticamente após carregar
+        setTimeout(() => {
+            diagnosticPlayer();
+        }, 3000);
+        
+        // Adicionar função global para diagnóstico manual
+        window.diagnosticPlayer = diagnosticPlayer;
+    </script>
+</body>
+
+</html>

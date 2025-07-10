@@ -1,0 +1,314 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<script src="{% static 'js/search.js'}"></script>
+
+
+<!-- Main Content -->
+<main class="main-content">
+    <div class="container-fluid py-4">
+        <!-- Search Header -->
+        <div class="search-header mb-4">
+            <h1 class="h3 mb-1">Resultado da busca por "The Weeknd"</h1>
+            <p class="text-muted">Encontramos vários resultados para sua busca</p>
+        </div>
+
+        <!-- Filter Tabs -->
+        <ul class="nav nav-pills mb-4 search-filters">
+            <li class="nav-item">
+                <a class="nav-link active" data-bs-toggle="pill" href="#all">Tudo</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="pill" href="#songs">Músicas</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="pill" href="#artists">Artistas</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="pill" href="#albums">Álbuns</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="pill" href="#playlists">Playlists</a>
+            </li>
+        </ul>
+
+        <div class="tab-content">
+            <!-- All Results -->
+            <div class="tab-pane fade show active" id="all">
+                <!-- Top Result -->
+                <section class="mb-5">
+                    <h2 class="section-title mb-3">Melhor resultado</h2>
+                    <div class="top-result-card">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="card bg-secondary h-100 top-result">
+                                    <div class="card-body d-flex">
+                                        <img src="https://via.placeholder.com/120x120/1DB954/ffffff?text=Artist"
+                                            alt="The Weeknd" class="artist-image me-4 rounded-circle">
+                                        <div class="flex-grow-1">
+                                            <h3 class="card-title mb-2">The Weeknd</h3>
+                                            <p class="text-muted mb-3">
+                                                <i class="fas fa-check-circle text-primary me-1"></i>
+                                                Artista verificado
+                                            </p>
+                                            <button class="btn btn-primary btn-lg rounded-pill play-artist-btn"
+                                                onclick="goToArtist('the-weeknd')">
+                                                <i class="fas fa-play me-2"></i>Reproduzir
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Songs -->
+                <section class="mb-5">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h2 class="section-title">Músicas</h2>
+                        <a href="#" class="text-muted">Ver tudo</a>
+                    </div>
+                    <div class="songs-list">
+                        <div class="song-item" data-song="blinding-lights">
+                            <div class="row align-items-center">
+                                <div class="col-auto">
+                                    <button class="btn btn-link text-light play-btn">
+                                        <i class="fas fa-play"></i>
+                                    </button>
+                                </div>
+                                <div class="col-auto">
+                                    <img src="https://via.placeholder.com/50x50/1DB954/ffffff?text=♪" alt="Album"
+                                        class="song-cover">
+                                </div>
+                                <div class="col">
+                                    <div class="song-title">Blinding Lights</div>
+                                    <div class="song-artist text-muted">The Weeknd</div>
+                                </div>
+                                <div class="col-auto">
+                                    <span class="song-duration text-muted">3:20</span>
+                                </div>
+                                <div class="col-auto">
+                                    <div class="dropdown">
+                                        <button class="btn btn-link text-light" data-bs-toggle="dropdown">
+                                            <i class="fas fa-ellipsis-h"></i>
+                                        </button>
+                                        <ul class="dropdown-menu bg-secondary">
+                                            <li><a class="dropdown-item text-light" href="#">Adicionar à playlist</a>
+                                            </li>
+                                            <li><a class="dropdown-item text-light" href="#">Curtir</a></li>
+                                            <li><a class="dropdown-item text-light" href="#">Compartilhar</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="song-item" data-song="save-your-tears">
+                            <div class="row align-items-center">
+                                <div class="col-auto">
+                                    <button class="btn btn-link text-light play-btn">
+                                        <i class="fas fa-play"></i>
+                                    </button>
+                                </div>
+                                <div class="col-auto">
+                                    <img src="https://via.placeholder.com/50x50/1ED760/ffffff?text=♪" alt="Album"
+                                        class="song-cover">
+                                </div>
+                                <div class="col">
+                                    <div class="song-title">Save Your Tears</div>
+                                    <div class="song-artist text-muted">The Weeknd</div>
+                                </div>
+                                <div class="col-auto">
+                                    <span class="song-duration text-muted">3:35</span>
+                                </div>
+                                <div class="col-auto">
+                                    <div class="dropdown">
+                                        <button class="btn btn-link text-light" data-bs-toggle="dropdown">
+                                            <i class="fas fa-ellipsis-h"></i>
+                                        </button>
+                                        <ul class="dropdown-menu bg-secondary">
+                                            <li><a class="dropdown-item text-light" href="#">Adicionar à playlist</a>
+                                            </li>
+                                            <li><a class="dropdown-item text-light" href="#">Curtir</a></li>
+                                            <li><a class="dropdown-item text-light" href="#">Compartilhar</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="song-item" data-song="die-for-you">
+                            <div class="row align-items-center">
+                                <div class="col-auto">
+                                    <button class="btn btn-link text-light play-btn">
+                                        <i class="fas fa-play"></i>
+                                    </button>
+                                </div>
+                                <div class="col-auto">
+                                    <img src="https://via.placeholder.com/50x50/1AA34A/ffffff?text=♪" alt="Album"
+                                        class="song-cover">
+                                </div>
+                                <div class="col">
+                                    <div class="song-title">Die For You</div>
+                                    <div class="song-artist text-muted">The Weeknd</div>
+                                </div>
+                                <div class="col-auto">
+                                    <span class="song-duration text-muted">4:20</span>
+                                </div>
+                                <div class="col-auto">
+                                    <div class="dropdown">
+                                        <button class="btn btn-link text-light" data-bs-toggle="dropdown">
+                                            <i class="fas fa-ellipsis-h"></i>
+                                        </button>
+                                        <ul class="dropdown-menu bg-secondary">
+                                            <li><a class="dropdown-item text-light" href="#">Adicionar à playlist</a>
+                                            </li>
+                                            <li><a class="dropdown-item text-light" href="#">Curtir</a></li>
+                                            <li><a class="dropdown-item text-light" href="#">Compartilhar</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Albums -->
+                <section class="mb-5">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h2 class="section-title">Álbuns</h2>
+                        <a href="#" class="text-muted">Ver tudo</a>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-2 col-md-3 col-sm-4 col-6 mb-4">
+                            <div class="album-card" onclick="goToAlbum('after-hours')">
+                                <div class="card bg-transparent border-0">
+                                    <div class="position-relative">
+                                        <img src="https://via.placeholder.com/200x200/1DB954/ffffff?text=After+Hours"
+                                            class="card-img-top album-cover" alt="After Hours">
+                                        <div class="play-overlay">
+                                            <button class="btn btn-primary rounded-circle">
+                                                <i class="fas fa-play"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="card-body p-2">
+                                        <h6 class="card-title mb-1">After Hours</h6>
+                                        <p class="card-text text-muted small">The Weeknd</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-2 col-md-3 col-sm-4 col-6 mb-4">
+                            <div class="album-card" onclick="goToAlbum('dawn-fm')">
+                                <div class="card bg-transparent border-0">
+                                    <div class="position-relative">
+                                        <img src="https://via.placeholder.com/200x200/1ED760/ffffff?text=Dawn+FM"
+                                            class="card-img-top album-cover" alt="Dawn FM">
+                                        <div class="play-overlay">
+                                            <button class="btn btn-primary rounded-circle">
+                                                <i class="fas fa-play"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="card-body p-2">
+                                        <h6 class="card-title mb-1">Dawn FM</h6>
+                                        <p class="card-text text-muted small">The Weeknd</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-2 col-md-3 col-sm-4 col-6 mb-4">
+                            <div class="album-card" onclick="goToAlbum('starboy')">
+                                <div class="card bg-transparent border-0">
+                                    <div class="position-relative">
+                                        <img src="https://via.placeholder.com/200x200/1AA34A/ffffff?text=Starboy"
+                                            class="card-img-top album-cover" alt="Starboy">
+                                        <div class="play-overlay">
+                                            <button class="btn btn-primary rounded-circle">
+                                                <i class="fas fa-play"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="card-body p-2">
+                                        <h6 class="card-title mb-1">Starboy</h6>
+                                        <p class="card-text text-muted small">The Weeknd</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Related Artists -->
+                <section class="mb-5">
+                    <h2 class="section-title mb-3">Artistas relacionados</h2>
+                    <div class="row">
+                        <div class="col-lg-2 col-md-3 col-sm-4 col-6 mb-4">
+                            <div class="artist-card" onclick="goToArtist('bruno-mars')">
+                                <div class="card bg-transparent border-0">
+                                    <img src="https://via.placeholder.com/200x200/FF6B6B/ffffff?text=Bruno+Mars"
+                                        class="card-img-top artist-image rounded-circle" alt="Bruno Mars">
+                                    <div class="card-body p-2 text-center">
+                                        <h6 class="card-title mb-1">Bruno Mars</h6>
+                                        <p class="card-text text-muted small">Artista</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-2 col-md-3 col-sm-4 col-6 mb-4">
+                            <div class="artist-card" onclick="goToArtist('dua-lipa')">
+                                <div class="card bg-transparent border-0">
+                                    <img src="https://via.placeholder.com/200x200/4ECDC4/ffffff?text=Dua+Lipa"
+                                        class="card-img-top artist-image rounded-circle" alt="Dua Lipa">
+                                    <div class="card-body p-2 text-center">
+                                        <h6 class="card-title mb-1">Dua Lipa</h6>
+                                        <p class="card-text text-muted small">Artista</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Songs Tab -->
+            <div class="tab-pane fade" id="songs">
+                <div class="songs-list">
+                    <!-- More songs will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Artists Tab -->
+            <div class="tab-pane fade" id="artists">
+                <div class="row" id="artistsResults">
+                    <!-- Artists will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Albums Tab -->
+            <div class="tab-pane fade" id="albums">
+                <div class="row" id="albumsResults">
+                    <!-- Albums will be loaded here -->
+                </div>
+            </div>
+
+            <!-- Playlists Tab -->
+            <div class="tab-pane fade" id="playlists">
+                <div class="row" id="playlistsResults">
+                    <!-- Playlists will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+
+
+{% endblock %}

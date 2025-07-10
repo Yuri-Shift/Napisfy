@@ -1,0 +1,160 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<!-- Main Content -->
+<main class="main-content">
+    <div class="container-fluid py-4">
+        <!-- Hero Section -->
+        <section class="hero-section mb-5">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <h1 class="display-4 fw-bold mb-3">Descubra sua próxima música favorita</h1>
+                    <p class="lead mb-4">Milhões de músicas, albuns e playlists esperando por você.</p>
+                    <button class="btn btn-primary btn-lg px-4" onclick="testPlayer()">
+                        <i class="fas fa-play me-2"></i>Começar a ouvir
+                    </button>
+                </div>
+                <div class="col-md-6">
+                    <div class="hero-image">
+                        <div class="album-showcase">
+                            {% for cancao in cancoes_recentes|slice:":3" %}
+                                <div class="album-item {% if forloop.first %}active{% endif %}">
+                                    {% if cancao.album.capa %}
+                                        <img src="{{ cancao.album.capa.url }}" class="img-fluid rounded" alt="{{ cancao.nome }}" width="454" height="454">
+                                    {% else %}
+                                        <img src="https://m.media-amazon.com/images/I/51DWWmbbALL._SX354_SY354_BL0_QL100__UX716_FMwebp_QL85_.jpg" 
+                                             alt="Default Album Cover" class="img-fluid rounded">
+                                    {% endif %}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Carrossel -->
+        <section class="mb-5">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h2 class="section-title">Novos Lançamentos</h2>
+                <a href="#" class="btn btn-close-white">Ver tudo</a>
+            </div>
+            <div class="row" id="newReleases">
+                {% for cancao in cancoes_recentes %}
+                <div class="col-lg-2 col-md-3 col-sm-4 col-6 mb-4">
+                    <div class="album-card">
+                        <div class="card bg-transparent border-0">
+                            <div class="position-relative">
+                                {% if cancao.album.capa %}
+                                <img src="{{ cancao.album.capa.url }}" class="card-img-top album-cover"
+                                    alt="{{ cancao.nome }}" width="200" height="200">
+                                {% else %}
+                                Sem Imagem
+                                {% endif %}
+                                <div class="play-overlay bg-transparent">
+                                    <button class="btn btn-primary rounded-circle"
+                                        onclick="playTrackFromDB({{ cancao.id }})">
+                                        <i class="fas fa-play"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body p-2 bg-secondary">
+                                <h6 class="card-title mb-1 text-light">{{ cancao.nome|truncatechars:20 }}</h6>
+                                <p class="card-text text-muted small">{{ cancao.artista.nome|truncatechars:15 }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </section>
+
+        <!-- Albuns -->
+        <section class="mb-5">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h2 class="section-title">Álbuns em Destaque</h2>
+                <a href="#" class="btn btn-close-white">Ver tudo</a>
+            </div>
+            <div class="row" id="featuredPlaylists">
+
+                {% for album in albuns_destaque %}
+                <div class="col-lg-2 col-md-3 col-sm-4 col-6 mb-4">
+                    <div class="album-card">
+                        <div class="card bg-transparent border-0">
+                            <div class="position-relative">
+                                {% if album.capa %}
+                                <img src="{{ album.capa.url }}" class="card-img-top" alt="{{ album.titulo }}" width="200" height="200">
+                                {% else %}
+                                <p>Sem Imagem</p>
+                                {% endif %}
+                                <div class="play-overlay bg-transparent">
+                                    <button class="btn btn-primary rounded-circle"
+                                        onclick="playAlbumFromDB({{ album.id }})">
+                                        <i class="fas fa-play"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body p-2 bg-secondary">
+                                <h6 class="card-title mb-1 text-light">{{ album.titulo|truncatechars:17 }}</h6>
+                                <p class="card-text text-muted small">{{ album.artista.nome|truncatechars:15 }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+
+            </div>
+        </section>
+
+        <!-- Top Artists -->
+        <section class="mb-5">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h2 class="section-title">Artistas Populares</h2>
+            </div>
+            <div class="row" id="topArtists">
+
+                {% for artista in artistas_populares %}
+                <div class="col-lg-2 col-md-3 col-sm-4 col-6 mb-4">
+                    <div class="artist-card">
+                        
+                        <div class="card bg-transparent border-0">
+                            {% if artista.foto %}
+                            <img src="{{ artista.foto.url }}" class="card-img-top artist-image rounded-circle"
+                                alt="{{ artista.foto.url }}">
+                            {% else %}
+                            <p class="text-primary">Sem Imagem</p>
+                            {% endif %}
+
+                            <div class="card-body p-2 text-center bg-secondary">
+                                <h6 class="card-title mb-1">{{ artista.nome|truncatechars:15 }}</h6>
+                                <p class="card-text text-muted small">Artista</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+
+
+            </div>
+        </section>
+
+    </div>
+</main>
+
+<script>
+
+    // Inicialização específica da página home
+    document.addEventListener('DOMContentLoaded', function () {
+        console.log('📱 Página home carregada');
+
+        setTimeout(async () => {
+            if (window.musicPlayer) {
+                console.log('🎵 Player pronto na home, carregando músicas do sistema...');
+                await loadAllTracks();
+            }
+        }, 2000);
+    });
+</script>
+{% endblock %}

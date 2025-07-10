@@ -1,0 +1,510 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<!-- Main Content -->
+<main class="main-content">
+    <div class="container-fluid py-4">
+        <!-- Breadcrumb -->
+        <nav aria-label="breadcrumb" class="mb-4">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html" class="text-decoration-none">Início</a></li>
+                <li class="breadcrumb-item active" aria-current="page">The Weeknd</li>
+            </ol>
+        </nav>
+
+        <!-- Artist Header -->
+        <section class="artist-header mb-5">
+            <div class="artist-hero"
+                style="background: linear-gradient(135deg, rgba(29, 185, 84, 0.3) 0%, rgba(18, 18, 18, 0.8) 100%), url('https://via.placeholder.com/1920x600/333/fff?text=Artist+Background') center/cover;">
+                <div class="artist-hero-content">
+                    <div class="row align-items-end">
+                        <div class="col-auto">
+                            <div class="artist-image-large">
+                                <img src="https://via.placeholder.com/280x280/1DB954/ffffff?text=The+Weeknd"
+                                    alt="The Weeknd" class="img-fluid rounded-circle shadow-lg">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="artist-info">
+                                <div class="d-flex align-items-center mb-2">
+                                    <i class="fas fa-check-circle text-primary me-2"></i>
+                                    <span class="text-muted">Artista verificado</span>
+                                </div>
+                                <h1 class="display-3 fw-bold mb-3">The Weeknd</h1>
+                                <p class="h5 text-muted mb-0">85.2 milhões de ouvintes mensais</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Action Buttons -->
+        <section class="artist-actions mb-4">
+            <div class="d-flex align-items-center">
+                <button class="btn btn-primary btn-lg rounded-pill me-3 play-artist-btn">
+                    <i class="fas fa-play me-2"></i>Reproduzir
+                </button>
+                <button class="btn btn-outline-light rounded-pill me-3 follow-btn">
+                    <i class="fas fa-user-plus me-2"></i>Seguir
+                </button>
+                <div class="dropdown">
+                    <button class="btn btn-link text-light" data-bs-toggle="dropdown">
+                        <i class="fas fa-ellipsis-h fa-lg"></i>
+                    </button>
+                    <ul class="dropdown-menu bg-secondary">
+                        <li><a class="dropdown-item text-light" href="#">Ir para rádio do artista</a></li>
+                        <li><a class="dropdown-item text-light" href="#">Compartilhar</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item text-light" href="#">Não reproduzir este artista</a></li>
+                        <li><a class="dropdown-item text-light" href="#">Reportar</a></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Popular Songs -->
+        <section class="mb-5">
+            <h2 class="section-title mb-3">Populares</h2>
+            <div class="popular-songs">
+                <div class="song-item popular-song" data-song="blinding-lights">
+                    <div class="row align-items-center">
+                        <div class="col-auto">
+                            <div class="song-rank">1</div>
+                        </div>
+                        <div class="col-auto">
+                            <button class="btn btn-link text-light play-btn">
+                                <i class="fas fa-play"></i>
+                            </button>
+                        </div>
+                        <div class="col-auto">
+                            <img src="https://via.placeholder.com/50x50/1DB954/ffffff?text=BL" alt="Album"
+                                class="song-cover">
+                        </div>
+                        <div class="col">
+                            <div class="song-title">Blinding Lights</div>
+                            <div class="song-plays text-muted">2,847,392,156 reproduções</div>
+                        </div>
+                        <div class="col-auto">
+                            <span class="song-duration text-muted">3:20</span>
+                        </div>
+                        <div class="col-auto">
+                            <div class="track-actions">
+                                <button class="btn btn-link text-light like-btn">
+                                    <i class="fas fa-heart text-primary"></i>
+                                </button>
+                                <div class="dropdown">
+                                    <button class="btn btn-link text-light" data-bs-toggle="dropdown">
+                                        <i class="fas fa-ellipsis-h"></i>
+                                    </button>
+                                    <ul class="dropdown-menu bg-secondary">
+                                        <li><a class="dropdown-item text-light" href="#">Adicionar à fila</a></li>
+                                        <li><a class="dropdown-item text-light" href="#">Adicionar à playlist</a></li>
+                                        <li><a class="dropdown-item text-light" href="#">Ir para álbum</a></li>
+                                        <li><a class="dropdown-item text-light" href="#">Compartilhar</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="song-item popular-song" data-song="save-your-tears">
+                    <div class="row align-items-center">
+                        <div class="col-auto">
+                            <div class="song-rank">2</div>
+                        </div>
+                        <div class="col-auto">
+                            <button class="btn btn-link text-light play-btn">
+                                <i class="fas fa-play"></i>
+                            </button>
+                        </div>
+                        <div class="col-auto">
+                            <img src="https://via.placeholder.com/50x50/1ED760/ffffff?text=SYT" alt="Album"
+                                class="song-cover">
+                        </div>
+                        <div class="col">
+                            <div class="song-title">Save Your Tears</div>
+                            <div class="song-plays text-muted">1,234,567,890 reproduções</div>
+                        </div>
+                        <div class="col-auto">
+                            <span class="song-duration text-muted">3:35</span>
+                        </div>
+                        <div class="col-auto">
+                            <div class="track-actions">
+                                <button class="btn btn-link text-light like-btn">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                                <div class="dropdown">
+                                    <button class="btn btn-link text-light" data-bs-toggle="dropdown">
+                                        <i class="fas fa-ellipsis-h"></i>
+                                    </button>
+                                    <ul class="dropdown-menu bg-secondary">
+                                        <li><a class="dropdown-item text-light" href="#">Adicionar à fila</a></li>
+                                        <li><a class="dropdown-item text-light" href="#">Adicionar à playlist</a></li>
+                                        <li><a class="dropdown-item text-light" href="#">Ir para álbum</a></li>
+                                        <li><a class="dropdown-item text-light" href="#">Compartilhar</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="song-item popular-song" data-song="die-for-you">
+                    <div class="row align-items-center">
+                        <div class="col-auto">
+                            <div class="song-rank">3</div>
+                        </div>
+                        <div class="col-auto">
+                            <button class="btn btn-link text-light play-btn">
+                                <i class="fas fa-play"></i>
+                            </button>
+                        </div>
+                        <div class="col-auto">
+                            <img src="https://via.placeholder.com/50x50/1AA34A/ffffff?text=DFY" alt="Album"
+                                class="song-cover">
+                        </div>
+                        <div class="col">
+                            <div class="song-title">Die For You</div>
+                            <div class="song-plays text-muted">987,654,321 reproduções</div>
+                        </div>
+                        <div class="col-auto">
+                            <span class="song-duration text-muted">4:20</span>
+                        </div>
+                        <div class="col-auto">
+                            <div class="track-actions">
+                                <button class="btn btn-link text-light like-btn">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                                <div class="dropdown">
+                                    <button class="btn btn-link text-light" data-bs-toggle="dropdown">
+                                        <i class="fas fa-ellipsis-h"></i>
+                                    </button>
+                                    <ul class="dropdown-menu bg-secondary">
+                                        <li><a class="dropdown-item text-light" href="#">Adicionar à fila</a></li>
+                                        <li><a class="dropdown-item text-light" href="#">Adicionar à playlist</a></li>
+                                        <li><a class="dropdown-item text-light" href="#">Ir para álbum</a></li>
+                                        <li><a class="dropdown-item text-light" href="#">Compartilhar</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="song-item popular-song" data-song="starboy">
+                    <div class="row align-items-center">
+                        <div class="col-auto">
+                            <div class="song-rank">4</div>
+                        </div>
+                        <div class="col-auto">
+                            <button class="btn btn-link text-light play-btn">
+                                <i class="fas fa-play"></i>
+                            </button>
+                        </div>
+                        <div class="col-auto">
+                            <img src="https://via.placeholder.com/50x50/FF6B6B/ffffff?text=SB" alt="Album"
+                                class="song-cover">
+                        </div>
+                        <div class="col">
+                            <div class="song-title">Starboy</div>
+                            <div class="song-plays text-muted">756,432,189 reproduções</div>
+                        </div>
+                        <div class="col-auto">
+                            <span class="song-duration text-muted">3:50</span>
+                        </div>
+                        <div class="col-auto">
+                            <div class="track-actions">
+                                <button class="btn btn-link text-light like-btn">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                                <div class="dropdown">
+                                    <button class="btn btn-link text-light" data-bs-toggle="dropdown">
+                                        <i class="fas fa-ellipsis-h"></i>
+                                    </button>
+                                    <ul class="dropdown-menu bg-secondary">
+                                        <li><a class="dropdown-item text-light" href="#">Adicionar à fila</a></li>
+                                        <li><a class="dropdown-item text-light" href="#">Adicionar à playlist</a></li>
+                                        <li><a class="dropdown-item text-light" href="#">Ir para álbum</a></li>
+                                        <li><a class="dropdown-item text-light" href="#">Compartilhar</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="song-item popular-song" data-song="earned-it">
+                    <div class="row align-items-center">
+                        <div class="col-auto">
+                            <div class="song-rank">5</div>
+                        </div>
+                        <div class="col-auto">
+                            <button class="btn btn-link text-light play-btn">
+                                <i class="fas fa-play"></i>
+                            </button>
+                        </div>
+                        <div class="col-auto">
+                            <img src="https://via.placeholder.com/50x50/4ECDC4/ffffff?text=EI" alt="Album"
+                                class="song-cover">
+                        </div>
+                        <div class="col">
+                            <div class="song-title">Earned It</div>
+                            <div class="song-plays text-muted">623,891,456 reproduções</div>
+                        </div>
+                        <div class="col-auto">
+                            <span class="song-duration text-muted">4:37</span>
+                        </div>
+                        <div class="col-auto">
+                            <div class="track-actions">
+                                <button class="btn btn-link text-light like-btn">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                                <div class="dropdown">
+                                    <button class="btn btn-link text-light" data-bs-toggle="dropdown">
+                                        <i class="fas fa-ellipsis-h"></i>
+                                    </button>
+                                    <ul class="dropdown-menu bg-secondary">
+                                        <li><a class="dropdown-item text-light" href="#">Adicionar à fila</a></li>
+                                        <li><a class="dropdown-item text-light" href="#">Adicionar à playlist</a></li>
+                                        <li><a class="dropdown-item text-light" href="#">Ir para álbum</a></li>
+                                        <li><a class="dropdown-item text-light" href="#">Compartilhar</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="btn btn-link text-muted mt-3 show-more-btn">
+                    <span class="show-text">Mostrar mais</span>
+                    <span class="hide-text" style="display: none;">Mostrar menos</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- Albums -->
+        <section class="mb-5">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h2 class="section-title">Álbuns</h2>
+                <a href="#" class="text-muted">Mostrar discografia</a>
+            </div>
+            <div class="row">
+                <div class="col-lg-2 col-md-3 col-sm-4 col-6 mb-4">
+                    <div class="album-card" onclick="goToAlbum('after-hours')">
+                        <div class="card bg-transparent border-0">
+                            <div class="position-relative">
+                                <img src="https://via.placeholder.com/200x200/1DB954/ffffff?text=After+Hours"
+                                    class="card-img-top album-cover" alt="After Hours">
+                                <div class="play-overlay">
+                                    <button class="btn btn-primary rounded-circle">
+                                        <i class="fas fa-play"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body p-2">
+                                <h6 class="card-title mb-1">After Hours</h6>
+                                <p class="card-text text-muted small">2020 • Álbum</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 col-md-3 col-sm-4 col-6 mb-4">
+                    <div class="album-card" onclick="goToAlbum('dawn-fm')">
+                        <div class="card bg-transparent border-0">
+                            <div class="position-relative">
+                                <img src="https://via.placeholder.com/200x200/1ED760/ffffff?text=Dawn+FM"
+                                    class="card-img-top album-cover" alt="Dawn FM">
+                                <div class="play-overlay">
+                                    <button class="btn btn-primary rounded-circle">
+                                        <i class="fas fa-play"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body p-2">
+                                <h6 class="card-title mb-1">Dawn FM</h6>
+                                <p class="card-text text-muted small">2022 • Álbum</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 col-md-3 col-sm-4 col-6 mb-4">
+                    <div class="album-card" onclick="goToAlbum('starboy')">
+                        <div class="card bg-transparent border-0">
+                            <div class="position-relative">
+                                <img src="https://via.placeholder.com/200x200/1AA34A/ffffff?text=Starboy"
+                                    class="card-img-top album-cover" alt="Starboy">
+                                <div class="play-overlay">
+                                    <button class="btn btn-primary rounded-circle">
+                                        <i class="fas fa-play"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body p-2">
+                                <h6 class="card-title mb-1">Starboy</h6>
+                                <p class="card-text text-muted small">2016 • Álbum</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 col-md-3 col-sm-4 col-6 mb-4">
+                    <div class="album-card" onclick="goToAlbum('beauty-behind-the-madness')">
+                        <div class="card bg-transparent border-0">
+                            <div class="position-relative">
+                                <img src="https://via.placeholder.com/200x200/FF6B6B/ffffff?text=Beauty"
+                                    class="card-img-top album-cover" alt="Beauty Behind the Madness">
+                                <div class="play-overlay">
+                                    <button class="btn btn-primary rounded-circle">
+                                        <i class="fas fa-play"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body p-2">
+                                <h6 class="card-title mb-1">Beauty Behind the Madness</h6>
+                                <p class="card-text text-muted small">2015 • Álbum</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 col-md-3 col-sm-4 col-6 mb-4">
+                    <div class="album-card" onclick="goToAlbum('kiss-land')">
+                        <div class="card bg-transparent border-0">
+                            <div class="position-relative">
+                                <img src="https://via.placeholder.com/200x200/4ECDC4/ffffff?text=Kiss+Land"
+                                    class="card-img-top album-cover" alt="Kiss Land">
+                                <div class="play-overlay">
+                                    <button class="btn btn-primary rounded-circle">
+                                        <i class="fas fa-play"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body p-2">
+                                <h6 class="card-title mb-1">Kiss Land</h6>
+                                <p class="card-text text-muted small">2013 • Álbum</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Artist Bio -->
+        <section class="artist-bio mb-5">
+            <div class="row">
+                <div class="col-md-8">
+                    <h3 class="mb-3">Sobre</h3>
+                    <div class="bio-content">
+                        <p class="text-muted">
+                            Abel Makkonen Tesfaye, conhecido profissionalmente como The Weeknd, é um cantor,
+                            compositor e produtor musical canadense. Conhecido por seu estilo musical eclético
+                            e persona sombria, The Weeknd ganhou aclamação crítica e sucesso comercial após
+                            lançar vários mixtapes no final de 2010.
+                        </p>
+                        <p class="text-muted">
+                            Suas canções frequentemente exploram temas de hedonismo, amor tóxico e melancolia,
+                            e são notáveis por seus vocais expressivos e uso frequente de sintetizadores.
+                            Ele ganhou vários prêmios, incluindo quatro Grammy Awards, e teve múltiplos álbuns
+                            certificados multi-platina.
+                        </p>
+                    </div>
+                    <div class="artist-stats mt-4">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <strong>85.2M</strong><br>
+                                <span class="text-muted">Ouvintes mensais</span>
+                            </div>
+                            <div class="col-sm-6">
+                                <strong>47M</strong><br>
+                                <span class="text-muted">Seguidores</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Related Artists -->
+        <section class="mb-5">
+            <h3 class="mb-3">Fãs também curtem</h3>
+            <div class="row">
+                <div class="col-lg-2 col-md-3 col-sm-4 col-6 mb-4">
+                    <div class="artist-card" onclick="goToArtist('drake')">
+                        <div class="card bg-transparent border-0">
+                            <img src="https://via.placeholder.com/200x200/1DB954/ffffff?text=Drake"
+                                class="card-img-top artist-image rounded-circle" alt="Drake">
+                            <div class="card-body p-2 text-center">
+                                <h6 class="card-title mb-1">Drake</h6>
+                                <p class="card-text text-muted small">Artista</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 col-md-3 col-sm-4 col-6 mb-4">
+                    <div class="artist-card" onclick="goToArtist('bruno-mars')">
+                        <div class="card bg-transparent border-0">
+                            <img src="https://via.placeholder.com/200x200/1ED760/ffffff?text=Bruno+Mars"
+                                class="card-img-top artist-image rounded-circle" alt="Bruno Mars">
+                            <div class="card-body p-2 text-center">
+                                <h6 class="card-title mb-1">Bruno Mars</h6>
+                                <p class="card-text text-muted small">Artista</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 col-md-3 col-sm-4 col-6 mb-4">
+                    <div class="artist-card" onclick="goToArtist('dua-lipa')">
+                        <div class="card bg-transparent border-0">
+                            <img src="https://via.placeholder.com/200x200/1AA34A/ffffff?text=Dua+Lipa"
+                                class="card-img-top artist-image rounded-circle" alt="Dua Lipa">
+                            <div class="card-body p-2 text-center">
+                                <h6 class="card-title mb-1">Dua Lipa</h6>
+                                <p class="card-text text-muted small">Artista</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 col-md-3 col-sm-4 col-6 mb-4">
+                    <div class="artist-card" onclick="goToArtist('ariana-grande')">
+                        <div class="card bg-transparent border-0">
+                            <img src="https://via.placeholder.com/200x200/FF6B6B/ffffff?text=Ariana"
+                                class="card-img-top artist-image rounded-circle" alt="Ariana Grande">
+                            <div class="card-body p-2 text-center">
+                                <h6 class="card-title mb-1">Ariana Grande</h6>
+                                <p class="card-text text-muted small">Artista</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-2 col-md-3 col-sm-4 col-6 mb-4">
+                    <div class="artist-card" onclick="goToArtist('billie-eilish')">
+                        <div class="card bg-transparent border-0">
+                            <img src="https://via.placeholder.com/200x200/4ECDC4/ffffff?text=Billie"
+                                class="card-img-top artist-image rounded-circle" alt="Billie Eilish">
+                            <div class="card-body p-2 text-center">
+                                <h6 class="card-title mb-1">Billie Eilish</h6>
+                                <p class="card-text text-muted small">Artista</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</main>
+
+
+
+
+{% endblock %}<!-- End of content block -->
